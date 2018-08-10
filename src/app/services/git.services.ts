@@ -4,40 +4,34 @@ import { Http, Headers } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+const API_URL = environment.apiUrl;
+
 
 
 
 @Injectable()
 export class GithubService {
-    private userName: string;
+    private userName = "devpurohit";
+    private client_id = '3198278eb6fb7788fa1e';
+    private client_secret = 'd6b3cf6265f7997f110ec1450246e7157d055a8f';
 
     constructor(private _http: Http) {
-        // console.log('Github Service Ready.');
-        this.userName = '';
+        console.log('Github Service Ready.');
     }
 
     getUser() {
         if (this.userName) {
-            return this._http.get('https://api.github.com/search/users?q=' + this.userName)
+            return this._http.get(API_URL + this.userName)
                 .pipe(
                   map(res => res.json()),
                   catchError(this.handleError));
         }
-        // In this way, errors can be captured via the return value
-        // .map(res => {
-        //     console.log(res);
-        //     if (res.status != 200) {
-        //         throw new Error('This request has failed ' + res.status);
-        //     }
-        //     else {
-        //         return res.json();
-        //     }
-        // })
     }
 
     getRepos() {
         if (this.userName) {
-            return this._http.get('https://api.github.com/search/users?q=' + this.userName + '/repos')
+            return this._http.get(API_URL + this.userName + '/repos')
                  .pipe(
                   map(res => res.json()),
                   catchError(this.handleError));
