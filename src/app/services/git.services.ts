@@ -12,7 +12,7 @@ const API_URL = environment.apiUrl;
 
 @Injectable()
 export class GithubService {
-    private userName = "devpurohit";
+    private userName = "matt";
     private client_id = '3198278eb6fb7788fa1e';
     private client_secret = 'd6b3cf6265f7997f110ec1450246e7157d055a8f';
 
@@ -22,7 +22,7 @@ export class GithubService {
 
     getUser() {
         if (this.userName) {
-            return this._http.get(API_URL + this.userName)
+            return this._http.get(API_URL + this.userName + '&client_id=' + this.client_id + '&client_secret=' + this.client_secret)
                 .pipe(
                   map(res => res.json()),
                   catchError(this.handleError));
@@ -38,9 +38,9 @@ export class GithubService {
         }
 
     }
-
-    updateUser(userName: string) {
-        this.userName = userName;
+    updateUser(username: string) {
+        this.userName = username;
+        console.log(this.userName);
     }
 
     private handleError(error: any) {
