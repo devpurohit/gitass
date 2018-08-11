@@ -1,51 +1,60 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component  } from '@angular/core';
 import { GithubService } from '../services/git.services';
 import { map } from 'rxjs/operators';
 
 
-import { GithubUser } from '../models/gitusers';
+//import { user } from '../models/gitusers';
 
 @Component({
     selector: 'searchform',
-    templateUrl: 'search.component.html'
-})
+    templateUrl: 'search.component.html',
+    providers:[GithubService]
+  })
 
 
-export class SearchformComponent implements OnInit {
-    @Input() githubUser: GithubUser;
-    @Output() userUpdated: EventEmitter<GithubUser> = new EventEmitter<GithubUser>();
+export class SearchformComponent  {
+    users :  any;
+    uarr: any[] = [];
+    username: string;
+
+  //  @Output() userUpdated: EventEmitter<user> = new EventEmitter<user>();
 
     constructor(private _githubService: GithubService) {
-    }
 
-    ngOnInit() {
-
-        if (this.githubUser) {
-            this.githubUser.user = false;
-            this.getUserInformation();
-        }
-
-    }
+      }
 
     searchUser() {
-        if (this.githubUser.userName && this.githubUser.userName.length > 0) {
-            this._githubService.updateUser(this.githubUser.userName);
-            this.getUserInformation();
-        } else {
-            this.githubUser.user = false;
-        }
+      this._githubService.updateUser(this.username);
+
+      console.log(this.username);
+        this._githubService.getUser().subscribe(user => {
+        this.users = user.items;
+        for (var i in this.users) {
+          this.uarr[i] =this.users[i]; }
+        });
+        console.log(this.uarr);
+
     }
+/*
+      ngOnInit() {
+
+           if (this.user) {
+               this.user.user = false;
+               this.getUserInformation();
+           }
+
+       }
 
     getUserInformation() {
-        if (this.githubUser.userName && this.githubUser.userName.length > 0) {
+        if (this.user.userName && this.user.userName.length > 0) {
 
             this._githubService.getUser().subscribe(user => {
-                this.githubUser.user = user;
-                this.userUpdated.emit(this.githubUser);
+                this.user.user = user;
+              //  this.userUpdated.emit(this.user);
             },
                 (err) => {
                     console.log('err:' + err);
-                    this.githubUser.user = false;
+                    this.user.user = false;
                 },
                 () => console.log('Done')
             );
@@ -54,16 +63,16 @@ export class SearchformComponent implements OnInit {
 
             this._githubService.getRepos().subscribe(repos => {
                 // console.log(repos);
-                this.githubUser.repos = repos;
-                this.userUpdated.emit(this.githubUser);
+                this.user.repos = repos;
+              //  this.userUpdated.emit(this.user);
             },
                 (err) => {
                     console.log('err:' + err);
-                    this.githubUser.user = false;
+                    this.user.user = false;
                 },
                 () => console.log('Done')
             );
 
         }
-    }
+    }*/
 }

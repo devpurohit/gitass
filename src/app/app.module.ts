@@ -2,25 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes} from '@angular/router'
+
 
 //Components
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SearchformComponent } from './search/search.component';
+import { AppRoutingModule, routingComponents } from './services/app-routing/app-routing.module';
 
 //Services
 import { GithubService } from './services/git.services';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
-    SearchformComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [GithubService],
   bootstrap: [AppComponent]
