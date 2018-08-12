@@ -8,7 +8,7 @@ import { GithubService } from '../services/git.services';
     templateUrl: 'profile.component.html'
 })
 export class ProfileComponent implements OnInit {
-    userprofile = [];
+    userprofile: any[] ;
     repos: any[] = [];
 
 
