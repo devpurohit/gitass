@@ -1,7 +1,7 @@
 # gitass
 ## Description
 An mini Angular app working on Github API.
-##Installation
+## Installation
 1. Clone this repo locally.
 2. Go to the root folder and run : npm install
 3. Run : ng serve
