@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-const API_URL = environment.apiUrl;
+const API_URL = environment.apiUrl1;
 const API_URL2 = environment.apiUrl2;
 
 
@@ -23,7 +23,7 @@ export class GithubService {
     getUser() {
         if (this.userName) {
 
-            return this._http.get(API_URL + this.userName + '&client_id=' + this.client_id + '&client_secret=' + this.client_secret)
+            return this._http.get(API_URL1 + this.userName + '&client_id=' + this.client_id + '&client_secret=' + this.client_secret)
                 .pipe(
                   map(res => res.json()));
         }
