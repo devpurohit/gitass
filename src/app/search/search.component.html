@@ -7,14 +7,13 @@
     </form>
   </div>
 </div>
-<profile></profile>
 <div class="row no-container">
 <div *ngIf="uarr" >
   <ul *ngFor="let data of uarr" class="list-unstyled" >
         <li>
               <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                  <a href="#" >
+                <div class="thumbnail" (click)="onClick(data.login)">
+                  <a  >
                     <img class="github-avatar" src="{{data.avatar_url}}" >
                   </a>
                   <div class="caption">

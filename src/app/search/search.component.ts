@@ -1,78 +1,49 @@
-import { Component  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { GithubService } from '../services/git.services';
 import { map } from 'rxjs/operators';
+import {Router} from "@angular/router";
+import { DataService } from "../data.service";
+
 
 
 //import { user } from '../models/gitusers';
 
 @Component({
     selector: 'searchform',
-    templateUrl: 'search.component.html',
-    providers:[GithubService]
-  })
+    templateUrl: 'search.component.html'
+    })
 
 
-export class SearchformComponent  {
+export class SearchformComponent implements OnInit {
     users :  any;
     uarr: any[] = [];
     username: string;
 
+
   //  @Output() userUpdated: EventEmitter<user> = new EventEmitter<user>();
 
-    constructor(private _githubService: GithubService) {
+    constructor(private _githubService: GithubService,private router: Router,private data: DataService) {
 
       }
 
+      ngOnInit() {
+        this.data.currentMessage.subscribe(message => this.username = message)
+
+      }
     searchUser() {
       this._githubService.updateUser(this.username);
 
-      console.log(this.username);
         this._githubService.getUser().subscribe(user => {
         this.users = user.items;
         for (var i in this.users) {
           this.uarr[i] =this.users[i]; }
         });
-        console.log(this.uarr);
 
     }
-/*
-      ngOnInit() {
 
-           if (this.user) {
-               this.user.user = false;
-               this.getUserInformation();
-           }
-
-       }
-
-    getUserInformation() {
-        if (this.user.userName && this.user.userName.length > 0) {
-
-            this._githubService.getUser().subscribe(user => {
-                this.user.user = user;
-              //  this.userUpdated.emit(this.user);
-            },
-                (err) => {
-                    console.log('err:' + err);
-                    this.user.user = false;
-                },
-                () => console.log('Done')
-            );
-
-
-
-            this._githubService.getRepos().subscribe(repos => {
-                // console.log(repos);
-                this.user.repos = repos;
-              //  this.userUpdated.emit(this.user);
-            },
-                (err) => {
-                    console.log('err:' + err);
-                    this.user.user = false;
-                },
-                () => console.log('Done')
-            );
-
-        }
-    }*/
+    onClick(login) {
+    this._githubService.updateUser(login);
+    this.data.changeMessage(login);
+    this.router.navigate(['/profile']);
+    }
 }

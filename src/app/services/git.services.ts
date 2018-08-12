@@ -13,52 +13,39 @@ const API_URL2 = environment.apiUrl2;
 
 @Injectable()
 export class GithubService {
-    private userName = "devpurohit";
+    private userName : string = "devpurohit";
     private client_id = '3198278eb6fb7788fa1e';
     private client_secret = 'd6b3cf6265f7997f110ec1450246e7157d055a8f';
 
     constructor(private _http: Http) {
-        console.log('Github Service Ready.');
     }
 
     getUser() {
         if (this.userName) {
+
             return this._http.get(API_URL + this.userName + '&client_id=' + this.client_id + '&client_secret=' + this.client_secret)
                 .pipe(
-                  map(res => res.json()),
-                  catchError(this.handleError));
+                  map(res => res.json()));
         }
     }
 
     getProfile() {
+
         if (this.userName) {
+          console.log(this.userName)
             return this._http.get(API_URL2 + this.userName + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
                 .pipe(
-                  map(res => res.json()),
-                  catchError(this.handleError));
+                  map(res => res.json()));
         }
     }
 
-    getRepos() {
-        if (this.userName) {
-            return this._http.get(API_URL + this.userName + '/repos')
-                 .pipe(
-                  map(res => res.json()),
-                  catchError(this.handleError));
-        }
 
-    }
     updateUser(username: string) {
         this.userName = username;
-        console.log(this.userName);
+        console.log(this.userName)
+
+
     }
 
-    private handleError(error: any) {
 
-        if (error.status === 401) {
-            return Observable.throw(error.status);
-        } else {
-            return Observable.throw(error.status || 'Server error');
-        }
-    }
 }
