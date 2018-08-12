@@ -28,7 +28,6 @@
 
             ],
             "scripts": [
-              "start": "ng serve",
 
             ]
           },
