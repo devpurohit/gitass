@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-const API_URL = environment.apiUrl1;
+const API_URL1 = environment.apiUrl1;
 const API_URL2 = environment.apiUrl2;
 
 
