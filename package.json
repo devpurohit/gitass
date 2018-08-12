@@ -2,10 +2,7 @@
   "name": "gitass",
   "version": "0.0.0",
   "scripts": {
-    "start": "http-server",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build && mv dist/* .",
-
+    "start": "ng serve",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
