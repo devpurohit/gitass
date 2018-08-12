@@ -1,13 +1,13 @@
-<div class="row no-container">
-  <div class="col-md-12 col-md-offset-4">
+<div class="row ">
+  <div class="col-md-12 ">
     <form>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="ENTER NAME " [(ngModel)]="username" name="username" (keyup)="searchUser()" >
+        <input type="text" class="form-control" placeholder="Github Username " [(ngModel)]="username" name="username" (keyup)="searchUser()" >
       </div>
     </form>
   </div>
 </div>
-<div class="row no-container">
+<div class="row ">
 <div *ngIf="uarr" >
   <ul *ngFor="let data of uarr" class="list-unstyled" >
         <li>

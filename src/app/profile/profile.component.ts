@@ -9,6 +9,7 @@ import { GithubService } from '../services/git.services';
 })
 export class ProfileComponent implements OnInit {
     userprofile: any[] = [];
+    repos: any[] = [];
 
 
     constructor(private _searched: GithubService, private data: DataService) {
@@ -26,6 +27,9 @@ export class ProfileComponent implements OnInit {
       this._searched.getProfile().subscribe(user => {
         this.userprofile = user;
       });
+      this._searched.getRepos().subscribe(repos => {
+            this.repos = repos;
+        });
     }
 
 

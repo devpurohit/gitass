@@ -1,72 +1,53 @@
+<div class="panel panel-default">
+       <div class="panel-heading">
+           <h2 class="panel-title" >{{userprofile.name}}</h2>
+       </div>
+       <div class="panel-body">
+           <div class="row">
+               <div class="col-md-4">
+                   <img class="img-thumbnail github-avatar" src="{{userprofile.avatar_url}}">
+               </div>
+               <div class="col-md-8">
+                   <div class="stats">
+                   <span class="label label-default">{{userprofile.public_repos}} Public Repos</span>
+                   <span class="label label-primary">{{userprofile.public_gists}} Public Gists</span>
+                   <span class="label label-success">{{userprofile.followers}} Followers</span>
+                   <span class="label label-info">{{userprofile.following}} Following</span>
+                   </div>
+                   <br>
+                   <ul class="list-group">
+                       <li class="list-group-item"><strong>Username: </strong>{{userprofile.login}}</li>
+                        <li class="list-group-item"><strong>Location: </strong>{{userprofile.location}}</li>
+                         <li class="list-group-item"><strong>Email: </strong>{{userprofile.email}}</li>
+                          <li class="list-group-item"><strong>Blog: </strong>{{userprofile.blog}}</li>
+                           <li class="list-group-item"><strong>Member Since: </strong>{{userprofile.created_at}}</li>
+                   </ul>
+               </div>
+           </div>
+       </div>
+   </div>
 
-
-  <div class="row">
-
-      <div class="col-md-5">
-
-              <div class="card">
-                  <h4 class="card-header">{{userprofile.login}}</h4>
-                  <div class="card-block">
-                      <div class="row">
-                          <div class="col-xl-4 m-b-1">
-                              <img src="{{userprofile.avatar_url}}" class="profile-img img-thumbnail m-b-1" />
-                              <a class="btn btn-sm btn-outline-primary btn-block m-t-1" href="{{userprofile.html_url}}" target="_blank">View Profile</a>
-                          </div>
-
-                          <div class="col-xl-8">
-
-
-                              <ul class="list-group">
-                                  <li class="list-group-item"><b>userprofilename: </b> {{userprofile.login}}</li>
-                                  <li class="list-group-item"><b>Location: </b> {{userprofile.location}}</li>
-                                  <li class="list-group-item"><b>E-Mail: </b> {{userprofile.email}}</li>
-                                  <li class="list-group-item"><b>Blog Link: </b> {{userprofile.blog}}</li>
-                                  <li class="list-group-item"><b>Member Since: </b> {{userprofile.created_at}}</li>
-                              </ul>
-
-                          </div>
-                      </div>
-
-                      <div class="status m-t-1">
-
-                          <span class="p-a-05 bg-info text-xs-center"> {{userprofile.public_repos}} Public Repos </span>
-                          <span class="p-a-05 bg-primary m-t-1 text-xs-center"> {{userprofile.public_gists}} Public Gists </span>
-                          <span class="p-a-05 bg-danger m-t-1 text-xs-center"> {{userprofile.followers}} Followers </span>
-                          <span class="p-a-05 bg-inverse m-t-1 text-xs-center"> {{userprofile.following}} Followings </span>
-
-
-                      </div>
-
-                  </div>
-
-
-
-          </div>
-
+   <div class="panel panel-default">
+           <div class="panel-heading">
+               <h3 class="panel-title">Repos</h3>
+           </div>
+           <div class="panel-body">
+               <div class="row">
+                   <div class="col-md-12">
+                       <div *ngFor="let repo of repos">
+                           <div class="row">
+                               <div class="col-md-9">
+                                   <h4><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
+                                   <p>{{repo.description}}</p>
+                               </div>
+                               <div class="col-md-3">
+                                   <span class="label label-default">{{repo.watchers}} Watchers</span>
+                                   <span class="label label-primary">{{repo.forks}} Forks</span>
+                               </div>
+                           </div>
+                           <hr />
+                       </div>
+                   </div>
+               </div>
+           </div>
       </div>
-  <!--    <div class="col-md-7">
-
-          <div *ngIf="githubuserprofile && userprofile && (userprofile.login && userprofile.login.length > 0)">
-              <div class="card">
-                  <h5 class="card-header">Repos</h5>
-                  <div class="card-block">
-
-                      <div class="list-group">
-
-                          <a *ngFor="let repo of repos" href="{{repo.html_url}}" target="_blank" class="list-group-item list-group-item-action">
-                              <span class="tag tag-info pull-xs-right">{{repo.watchers}} Watchers</span>
-                              <span class="tag tag-success pull-xs-right m-r-05">{{repo.forks}} Forks</span>
-                              <h6 class="list-group-item-heading">{{repo.name}}</h6>
-                              <p class="list-group-item-text">{{repo.description}}</p>
-                          </a>
-
-
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-
-      </div> -->
-
-  </div>

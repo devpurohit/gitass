@@ -32,7 +32,6 @@ export class GithubService {
     getProfile() {
 
         if (this.userName) {
-          console.log(this.userName)
             return this._http.get(API_URL2 + this.userName + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
                 .pipe(
                   map(res => res.json()));
@@ -42,10 +41,18 @@ export class GithubService {
 
     updateUser(username: string) {
         this.userName = username;
-        console.log(this.userName)
 
 
     }
 
+
+    getRepos() {
+
+        if (this.userName) {
+            return this._http.get(API_URL2 + this.userName + '/repos?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
+                .pipe(
+                  map(res => res.json()));
+        }
+    }
 
 }
